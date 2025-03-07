@@ -1,8 +1,12 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query/react";
 
+import apiReducer from "./api/apiSlice";
+import apiQuery, { middleware as apiMiddleware } from "./api/apiQuery";
 
 const combinedReducers = combineReducers({
+  api: apiReducer,
+  apiQuery,
 });
 
 const rootReducer = (state, action) => {
@@ -15,7 +19,7 @@ const rootReducer = (state, action) => {
 const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(),
+    getDefaultMiddleware().concat(apiMiddleware),
 });
 
 setupListeners(store.dispatch);

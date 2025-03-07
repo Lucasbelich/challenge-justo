@@ -1,0 +1,9 @@
+.orders__container{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.order__title{
+    font-size: 24px;
+}
